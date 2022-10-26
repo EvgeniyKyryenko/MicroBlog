@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MicroBlog</title>
+    <link rel="stylesheet" href="../static/css/style.css"/>
+</head>
+<body>
+    <header class="navbar">
+        <div class="navbar__brand">
+        <img class = "navbar__logo" src="../static/microblog-logo.svg" alt="MicroBlogLogo"/>Microblog
+        </div>
+        <ul class="navbar_navigation">
+            <li class="navbarr_navigation-item"><a class="navbar__link" href="#">Recent</a></li>
+            <li class="navbarr_navigation-item"><a class="navbar__link" href="#">Calendar</a></li>
+        </ul>
+    </header>
+    <main class="main">
+        <section>
+            <h1>Add new entry</h1>
+            <form class="form" action="/" method="post">
+                <p class="form__input">
+                    <label for="entry" class="form__label">Entry contents:</label>
+                    <textarea name="content" id="entry" class="form__textarea"></textarea>
+                </p>
+                <button type="submit" class="form__submit">Add entry</button>
+            </form>
+        </section>
+        <section>
+            <h1>Recent posts</h1>
+            {% for entry in entries %}
+                <article class="entry">
+                    <div>
+                        <h2 class="entry__title">{{ entry[0] | truncate(30,true) }}</h2>
+                        <time class="entry__date" datetime="{{ entry[1] }}">● {{ entry[2] }}</time>
+                    </div>
+                    <p class="entry__content">{{ entry[0] }}</p>
+                </article>
+            {% endfor %}
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="footer__content">
+            <section class="up">
+                <a class="footer__item" href="#">Recent</a>
+                <a class="footer__item" href="#">About</a>
+                <a class="footer__item" href="#">Calendar</a>
+            </section>
+            <section class="down">
+                <span class="footer__item">Made by Evgeniy Kyryenko</span>
+            </section>
+        </div>
+    </footer>
+</body>
+</html>
